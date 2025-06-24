@@ -1,0 +1,26 @@
+{
+  "id": "react_player_vimeo",
+  "type": "SharedSlice",
+  "name": "ReactPlayerVimeo",
+  "description": "ReactPlayerVimeo",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "vimeo_embed": {
+          "type": "Embed",
+          "config": {
+            "label": "Vimeo Embed",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

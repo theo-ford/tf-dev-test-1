@@ -1,0 +1,28 @@
+{
+  "id": "react_player_mp4",
+  "type": "SharedSlice",
+  "name": "ReactPlayerMp4",
+  "description": "ReactPlayerMp4",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "video": {
+          "type": "Link",
+          "config": {
+            "label": "Video",
+            "placeholder": "",
+            "select": "media",
+            "allowText": true
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
