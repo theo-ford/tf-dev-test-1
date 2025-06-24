@@ -60,10 +60,10 @@ export const ReactPlayerVimeoComponent = ({ source }: any) => {
     videoRef.current?.seekTo(e.target.value);
   }
 
-  function handleEnded() {
-    setPlayedState(0);
-    setPlaying(true);
-  }
+  // function handleEnded() {
+  //   setPlayedState(0);
+  //   setPlaying(true);
+  // }
 
   function fullScreenFunc() {
     if (fullScreen === false) {
