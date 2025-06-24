@@ -84,7 +84,7 @@ export const ReactPlayerComponent = ({ source }: any) => {
                 width="100%"
                 height="100%"
                 onProgress={progressFunc}
-                url={source}
+                url={source.url}
                 onDuration={handleDuration}
                 // onReady={(reactPlayer) => {
                 //   console.log(reactPlayer.getDuration());

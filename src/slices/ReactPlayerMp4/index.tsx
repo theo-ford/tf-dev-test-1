@@ -20,7 +20,7 @@ const ReactPlayerMp4: FC<ReactPlayerMp4Props> = ({ slice }) => {
       <p>react_player_mp4</p>
       <br />
       <div className="w-[100vw] h-[100vh] block relative bg-green-800 mb-[400px]">
-        <ReactPlayerComponent source={slice.primary.video.url} />
+        <ReactPlayerComponent source={slice.primary.video} />
       </div>
       {/* <video autoPlay controls>
         <source src={slice.primary.video.url} type="video/mp4" />
