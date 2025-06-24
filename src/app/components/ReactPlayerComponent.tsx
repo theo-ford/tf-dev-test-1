@@ -1,18 +1,19 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import ReactPlayer from "react-player";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
-export const ReactPlayerComponent = ({ source }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ReactPlayerComponent = ({ source }: any) => {
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [muteState, setMuteStatus] = useState(true);
   const [playedState, setPlayedState] = useState(0);
   const [seeking, setSeek] = useState(false);
-  const [durationState, durationSetState] = useState(null);
+  const [durationState, setDurationState] = useState(0);
 
-  const videoRef = useRef(null);
+  const videoRef = useRef<ReactPlayer>(null);
 
   const handle = useFullScreenHandle();
   // useEffect(() => {
@@ -23,31 +24,44 @@ export const ReactPlayerComponent = ({ source }) => {
 
   //
 
-  function volumeChange(e) {
-    var rangeValue = e.target.value;
-    var valueForVolumeControl = rangeValue / 100;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function volumeChange(e: any) {
+    const rangeValue = e.target.value;
+    const valueForVolumeControl = rangeValue / 100;
     setVolume(valueForVolumeControl);
   }
 
-  function progressFunc(progress) {
-    var videoProgress = progress.playedSeconds;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function progressFunc(progress: any) {
+    const videoProgress = progress.playedSeconds;
     console.log(videoProgress);
     if (!seeking) {
       setPlayedState(videoProgress);
     }
   }
 
-  function handleSeekChange(e) {
-    setPlayedState(e.target.value);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function handleDuration(duration: any) {
+    setDurationState(duration);
   }
 
-  function mouseDownSeek(e) {
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  function handleSeekChange(e: any) {
+    setPlayedState(e.target.value);
+    // setSeekValue(e.target.value);
+  }
+
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  function mouseDownSeek() {
     setSeek(true);
   }
 
-  function mouseUpSeek(e) {
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  function mouseUpSeek(e: any) {
     setSeek(false);
-    videoRef.current.seekTo(e.target.value);
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+    // videoRef.current?.seekTo(e.target.value);
+    videoRef.current?.seekTo(e.target.value);
   }
 
   return (
@@ -71,10 +85,11 @@ export const ReactPlayerComponent = ({ source }) => {
                 height="100%"
                 onProgress={progressFunc}
                 url={source}
-                onReady={(reactPlayer) => {
-                  console.log(reactPlayer.getDuration());
-                  durationSetState(reactPlayer.getDuration());
-                }}
+                onDuration={handleDuration}
+                // onReady={(reactPlayer) => {
+                //   console.log(reactPlayer.getDuration());
+                //   durationSetState(reactPlayer.getDuration());
+                // }}
               ></ReactPlayer>
 
               {playing ? (
@@ -92,7 +107,6 @@ export const ReactPlayerComponent = ({ source }) => {
                   Play
                 </div>
               )}
-              <div className="">{playedState};</div>
               <div
                 className="absolute bottom-[50px] right-[10px] z-[10] text-red-800"
                 onClick={handle.enter}
@@ -114,24 +128,27 @@ export const ReactPlayerComponent = ({ source }) => {
                   Mute
                 </div>
               )}
-              <div
-                className=""
+              <input
+                className="absolute bottom-[0px] right-[25px] z-[10] text-red-800 w-[5vw]"
                 type="range"
                 min="0"
                 max="100"
                 onChange={volumeChange}
-              ></div>
-              <div
-                className=""
+              ></input>
+
+              <input
                 type="range"
+                className="absolute bottom-0 left-0 w-[90vw] h-[20px] bg-gray-700"
                 min={0}
                 max={durationState}
-                step="any"
                 value={playedState}
                 onChange={handleSeekChange}
                 onMouseDown={mouseDownSeek}
                 onMouseUp={mouseUpSeek}
-              ></div>
+              />
+              <p>
+                {playedState} : {durationState}
+              </p>
             </FullScreen>
           </div>
         </div>
