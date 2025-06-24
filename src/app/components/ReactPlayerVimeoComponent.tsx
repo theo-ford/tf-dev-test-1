@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import ReactPlayer from "react-player";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
-export const ReactPlayerVimeoComponent = ({ source }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ReactPlayerVimeoComponent = ({ source }: any) => {
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [muteState, setMuteStatus] = useState(true);
@@ -13,41 +14,49 @@ export const ReactPlayerVimeoComponent = ({ source }) => {
   const [durationState, setDurationState] = useState(0);
   const [fullScreen, setFullScreen] = useState(false);
   // const [seekValue, setSeekValue] = useState(0);
-  const videoRef = useRef(null);
+  // const videoRef = useRef(null);
+  const videoRef = useRef<ReactPlayer>(null);
 
   const handle = useFullScreenHandle();
 
-  function volumeChange(e) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function volumeChange(e: any) {
     const rangeValue = e.target.value;
     const valueForVolumeControl = rangeValue / 100;
     setVolume(valueForVolumeControl);
   }
 
-  function progressFunc(progress) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function progressFunc(progress: any) {
     const videoProgress = progress.playedSeconds;
     console.log(videoProgress);
     if (!seeking) {
       setPlayedState(videoProgress);
     }
   }
-
-  function handleDuration(duration) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function handleDuration(duration: any) {
     setDurationState(duration);
   }
 
   // ORIGINAL FUNCTIONS FOR SEEK
 
-  function handleSeekChange(e) {
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  function handleSeekChange(e: any) {
     setPlayedState(e.target.value);
     // setSeekValue(e.target.value);
   }
 
-  function mouseDownSeek(e) {
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  function mouseDownSeek() {
     setSeek(true);
   }
 
-  function mouseUpSeek(e) {
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  function mouseUpSeek(e: any) {
     setSeek(false);
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+    // videoRef.current?.seekTo(e.target.value);
     videoRef.current?.seekTo(e.target.value);
   }
 
@@ -56,7 +65,7 @@ export const ReactPlayerVimeoComponent = ({ source }) => {
     setPlaying(false);
   }
 
-  function fullScreenFunc(e) {
+  function fullScreenFunc() {
     if (fullScreen === false) {
       handle.enter();
       setFullScreen(true);
