@@ -62,7 +62,7 @@ export const ReactPlayerVimeoComponent = ({ source }: any) => {
 
   function handleEnded() {
     setPlayedState(0);
-    setPlaying(false);
+    setPlaying(true);
   }
 
   function fullScreenFunc() {
@@ -94,7 +94,8 @@ export const ReactPlayerVimeoComponent = ({ source }: any) => {
                 }}
                 onProgress={progressFunc}
                 onDuration={handleDuration}
-                onEnded={handleEnded}
+                // onEnded={handleEnded}
+                loop={true}
                 url={source}
               ></ReactPlayer>
               {playing ? (

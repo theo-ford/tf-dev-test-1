@@ -12,7 +12,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className="bg-red-800">
+      <body className="">
         <div className="p-4">{children}</div>
       </body>
       <PrismicPreview repositoryName={repositoryName} />
