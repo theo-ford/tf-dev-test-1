@@ -13,7 +13,7 @@ export default async function Home() {
   // <SliceZone> renders the page's slices.
   return (
     <>
-      <p className="text-[200px] text-red-800">TEST</p>
+      <p className="text-[200px] text-green-800">TEST</p>
       <SliceZone slices={home.data.slices} components={components} />
     </>
   );
